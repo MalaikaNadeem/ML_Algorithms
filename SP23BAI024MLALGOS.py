@@ -46,6 +46,7 @@ def barChart(x_test, y_test, model):
 
 
 # Reading from csv file
+# https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud
 creditCard = pd.read_csv('creditcard.csv')
 x = creditCard.iloc[:,:-1]
 y = creditCard['Class']
