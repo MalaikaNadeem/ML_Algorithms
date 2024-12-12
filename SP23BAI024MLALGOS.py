@@ -121,29 +121,17 @@ xScale_test = scaler.transform(x_test_selected)
 
 
 # Training Lightgbm after preprocessing
-lgbmScaled = LGBMClassifier(
-    objective = 'binary',
-    boosting_type =  "gbdt",
-    force_col_wise =True,
-    random_state = 42
-    )
+lgbm.fit(xScale_train, smY)
 
-
-lgbmScaled.fit(xScale_train, smY)
-
-yLgbmScaled_pred = lgbmScaled.predict(xScale_test)
+yLgbmScaled_pred = lgbm.predict(xScale_test)
 LgbmScaledAccuracy = accuracy_score(y_test,yLgbmScaled_pred)
-print("Accuracy with default parameters using LightGBM after scaling and all that: ",LgbmScaledAccuracy)
+print("Accuracy with default parameters using LightGBM after preprocessing: ",LgbmScaledAccuracy)
 
 
 # Training svm after Preprocessing
-svmScaled = SVC(
-    random_state = 42
-    )
-
-svmScaled.fit(xScale_train,smY)
-SvmScaledAccuracy = svmScaled.score(xScale_test,y_test)
-print("Accuracy with default parameters using SVM after scaling and all that: ",SvmScaledAccuracy)
+svm.fit(xScale_train,smY)
+SvmScaledAccuracy = svm.score(xScale_test,y_test)
+print("Accuracy with default parameters using SVM preprocessing: ",SvmScaledAccuracy)
 
 
 # Hyperparameters for lightGbm tuning
